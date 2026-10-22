@@ -2,20 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e8f0e5">
+
 <title>For Roshaan | Mei Mie</title>
 
 <style>
+:root {
+  --green: #526d55;
+  --dark: #344638;
+  --sage: #e5eee1;
+  --cream: #fffdf7;
+  --pink: #f3e7e2;
+  --muted: #718071;
+  --border: #d3dfcf;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Georgia, serif;
-  color: #354b39;
-  background: linear-gradient(135deg, #edf3e8, #fbf5f0, #e5eee1);
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--dark);
+  background:
+    radial-gradient(circle at 10% 10%, #edf4e8, transparent 35%),
+    radial-gradient(circle at 90% 30%, #f5e8e3, transparent 35%),
+    #fbfaf5;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 button, input {
@@ -26,214 +42,273 @@ button {
   cursor: pointer;
 }
 
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+
+.primary,
+.soft {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 23px;
+  margin: 4px;
+  transition: transform .2s, background .2s;
+}
+
+.primary {
+  background: var(--green);
+  color: white;
+}
+
+.primary:hover {
+  background: #405943;
+  transform: translateY(-2px);
+}
+
+.soft {
+  background: var(--sage);
+  color: var(--dark);
+}
+
+.soft:hover {
+  background: #d6e4d1;
+}
+
+.eyebrow {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #81977c;
+}
+
+/* PASSWORD SCREEN */
+
 #gate {
   position: fixed;
   inset: 0;
-  z-index: 10;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background: linear-gradient(135deg, #e4eddf, #faf0eb);
+  padding: 22px;
+  background: linear-gradient(140deg, #e5eee0, #fbf0eb);
 }
 
 .gate-card {
-  max-width: 420px;
   width: 100%;
+  max-width: 430px;
+  padding: 38px 27px;
   text-align: center;
-  padding: 35px 25px;
-  background: #fffdf8;
-  border: 1px solid #ccd9c7;
+  background: var(--cream);
+  border: 1px solid var(--border);
   border-radius: 25px;
-  box-shadow: 0 15px 40px #40534018;
+  box-shadow: 0 15px 45px #34463815;
 }
 
-h1 {
+.gate-card h1 {
   font-weight: normal;
-  font-size: 42px;
+  font-size: 43px;
+  margin: 18px 0 12px;
 }
 
 .gate-card p {
+  color: var(--muted);
   line-height: 1.8;
-  color: #687a69;
 }
 
-input {
-  display: block;
+#password {
   width: 100%;
   padding: 14px;
-  margin: 20px 0;
-  border: 1px solid #cbd8c6;
+  margin: 17px 0 12px;
+  border: 1px solid var(--border);
   border-radius: 12px;
   background: white;
 }
 
-.primary, .soft {
-  padding: 12px 22px;
-  border: none;
-  border-radius: 30px;
-  margin: 4px;
-}
-
-.primary {
-  color: white;
-  background: #526f55;
-}
-
-.soft {
-  color: #405a43;
-  background: #e5eee1;
+#error {
+  font: 13px Arial, sans-serif;
+  color: #a34e4e;
+  min-height: 18px;
 }
 
 #site {
   display: none;
 }
 
-header {
-  text-align: center;
-  padding: 35px 15px 15px;
-}
+/* HEADER */
 
-.eyebrow {
-  font: 11px Arial, sans-serif;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #7b9277;
+header {
+  padding: 35px 18px 15px;
+  text-align: center;
 }
 
 header h1 {
-  font-size: clamp(42px, 9vw, 68px);
-  margin: 18px 0 8px;
+  font-weight: normal;
+  font-size: clamp(43px, 9vw, 72px);
+  letter-spacing: -2px;
+  margin: 17px 0 7px;
 }
 
 .subtitle {
+  color: var(--muted);
   font-style: italic;
-  color: #718071;
+  font-size: 17px;
 }
 
+/* MAIN CONTENT */
+
 main {
-  max-width: 1000px;
+  width: min(1050px, 100%);
   margin: auto;
-  padding: 20px;
+  padding: 18px 22px 90px;
 }
 
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
   align-items: center;
-  margin: 30px 0 50px;
+  gap: 32px;
+  margin: 30px 0 55px;
 }
 
-.hero h2 {
-  font-size: 36px;
-  font-weight: normal;
+.hero-copy h2 {
+  font-size: clamp(30px, 5vw, 43px);
   line-height: 1.2;
+  font-weight: normal;
+  margin: 18px 0;
 }
 
-.hero p {
-  line-height: 1.9;
+.hero-copy p {
   color: #617362;
+  line-height: 1.9;
+  font-size: 16px;
 }
 
-.art {
+/* THE PICTURE APPEARS ONLY HERE */
+
+.portrait-frame {
   padding: 12px;
-  background: #fffdf8;
-  border: 1px solid #d4dfd0;
+  background: var(--cream);
+  border: 1px solid var(--border);
   border-radius: 20px;
-  box-shadow: 0 12px 35px #40534018;
+  box-shadow: 0 15px 38px #34463812;
   transform: rotate(1deg);
 }
 
-.art img {
-  width: 100%;
+.portrait-frame img {
   display: block;
+  width: 100%;
+  height: auto;
   border-radius: 12px;
 }
 
-.section-title {
+/* LETTER CARDS */
+
+.section-heading {
   text-align: center;
-  margin: 45px 0 25px;
+  margin: 55px 0 27px;
 }
 
-.section-title h2 {
-  font-size: 32px;
+.section-heading h2 {
+  font-size: 33px;
   font-weight: normal;
+  margin: 13px 0;
 }
 
-.section-title p {
+.section-heading p {
+  color: var(--muted);
   line-height: 1.7;
-  color: #718071;
 }
 
 .letters {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 15px;
 }
 
 .letter-card {
+  min-height: 155px;
+  padding: 21px;
   text-align: left;
-  min-height: 145px;
-  padding: 20px;
-  border: 1px solid #d3dfcf;
+  color: var(--dark);
+  background: #fffdf8eF;
+  border: 1px solid var(--border);
   border-radius: 18px;
-  background: #fffdf8;
-  color: #354b39;
-  transition: transform .2s;
+  box-shadow: 0 6px 20px #34463808;
+  transition: transform .2s, box-shadow .2s;
 }
 
 .letter-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 12px 28px #34463813;
 }
 
 .letter-card small {
-  color: #82957e;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: #81977c;
 }
 
 .letter-card h3 {
   font-size: 22px;
   font-weight: normal;
+  line-height: 1.25;
+  margin: 14px 0;
 }
 
-.note, .question {
-  margin: 30px auto;
-  padding: 28px;
-  max-width: 720px;
+.letter-card span {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* REMINDER AND QUESTIONS */
+
+.note,
+.question {
+  max-width: 740px;
+  margin: 32px auto;
+  padding: 30px 25px;
   text-align: center;
-  background: #fffdf8;
-  border: 1px solid #d4dfd0;
+  background: #fffdf8eF;
+  border: 1px solid var(--border);
   border-radius: 22px;
 }
 
-.note p, .question p {
-  color: #657565;
+.note {
+  background: linear-gradient(135deg, #e8f0e4, #f5eee7);
+}
+
+.note h2,
+.question h2 {
+  font-size: 27px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+.note p,
+.question p {
+  color: #627363;
   line-height: 1.9;
 }
 
-.question h2 {
-  font-size: 26px;
-  font-weight: normal;
-}
-
-footer {
-  text-align: center;
-  padding: 35px 20px 65px;
-  color: #718071;
-  line-height: 1.8;
-}
+/* POP-UP LETTERS */
 
 .modal {
-  display: none;
   position: fixed;
-  z-index: 20;
   inset: 0;
-  padding: 18px;
-  background: #233329aa;
+  z-index: 200;
+  display: none;
   align-items: center;
   justify-content: center;
+  padding: 17px;
+  background: #243329aa;
+  backdrop-filter: blur(5px);
 }
 
 .modal.open {
@@ -246,22 +321,25 @@ footer {
   max-width: 620px;
   max-height: 88vh;
   overflow-y: auto;
-  padding: 35px 28px;
-  border: 1px solid #d4dfd0;
-  border-radius: 24px;
-  background: #fffdf7;
-  animation: pop .3s ease;
+  padding: 38px 28px 28px;
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  background: var(--cream);
+  box-shadow: 0 25px 80px #18241b35;
+  animation: pop .28s ease-out;
+  cursor: zoom-in;
 }
 
 .modal-content.enlarged {
   max-width: 850px;
-  padding: 45px 30px;
+  padding: 48px 35px;
+  cursor: zoom-out;
 }
 
 @keyframes pop {
   from {
     opacity: 0;
-    transform: scale(.8);
+    transform: scale(.82);
   }
   to {
     opacity: 1;
@@ -271,113 +349,192 @@ footer {
 
 .close {
   position: absolute;
+  right: 13px;
   top: 12px;
-  right: 12px;
+  width: 37px;
+  height: 37px;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  background: #e8efe4;
-  color: #354b39;
-  font-size: 22px;
+  background: var(--sage);
+  color: var(--dark);
+  font-family: Arial, sans-serif;
+  font-size: 23px;
 }
 
 .modal-content h2 {
-  font-size: 36px;
-  font-weight: normal;
+  font-size: clamp(29px, 6vw, 43px);
   line-height: 1.2;
-  margin-top: 20px;
+  font-weight: normal;
+  margin: 17px 0;
 }
 
 .modal-content p {
   font-size: 17px;
   line-height: 1.9;
-  color: #586b59;
+  color: #596b5b;
   white-space: pre-line;
 }
 
-.modal-content img {
-  display: block;
-  width: 100%;
-  max-width: 330px;
-  margin: 20px auto;
-  border-radius: 12px;
+.modal-actions {
+  text-align: center;
+  margin-top: 23px;
+  cursor: default;
 }
+
+/* FALLING SPARKLES */
 
 .sparkle {
   position: fixed;
   top: -25px;
-  z-index: 5;
-  color: #91ad89;
+  z-index: 150;
   pointer-events: none;
+  color: #91ad89;
+  opacity: .8;
   animation: fall linear forwards;
 }
 
 @keyframes fall {
   to {
-    transform: translateY(110vh) rotate(240deg);
+    transform: translate3d(var(--drift), 110vh, 0) rotate(250deg);
     opacity: 0;
   }
 }
 
+/* CSS-DRAWN DECORATIVE CAT AND THREAD BALL */
+
 .cat-toy {
   position: fixed;
-  bottom: 10px;
-  right: 12px;
-  z-index: 6;
-  width: 100px;
-  height: 65px;
+  bottom: 8px;
+  right: 10px;
+  width: 110px;
+  height: 83px;
+  z-index: 160;
+  pointer-events: none;
 }
 
-.cat {
+.thread-ball {
   position: absolute;
-  right: 5px;
-  bottom: 12px;
-  font-size: 35px;
-  animation: bob 1.5s infinite ease-in-out;
-}
-
-.ball {
-  position: absolute;
-  left: 5px;
-  bottom: 10px;
-  width: 22px;
-  height: 22px;
-  border: 2px solid #829a7d;
+  left: 7px;
+  bottom: 11px;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #91a68b;
   border-radius: 50%;
   background: repeating-linear-gradient(
-    45deg,
+    35deg,
     transparent 0 4px,
-    #b5c6ae 5px 6px
+    #b0c1a9 5px 6px
   );
-  animation: roll 1.5s infinite alternate;
+  animation: roll 1.8s ease-in-out infinite alternate;
 }
 
-@keyframes bob {
-  50% { transform: translateY(-5px); }
+.thread-line {
+  position: absolute;
+  left: 28px;
+  bottom: 22px;
+  width: 38px;
+  height: 22px;
+  border-top: 1px dashed #91a68b;
+  border-radius: 50%;
+  transform: rotate(-15deg);
+}
+
+.cat-drawing {
+  position: absolute;
+  right: 5px;
+  bottom: 13px;
+  width: 35px;
+  height: 27px;
+  background: #9aaa91;
+  border-radius: 50% 50% 40% 40%;
+  animation: cat-bob 1.5s ease-in-out infinite;
+}
+
+.cat-drawing::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: -11px;
+  width: 31px;
+  height: 23px;
+  background: #9aaa91;
+  border-radius: 50%;
+  clip-path: polygon(0 0, 37% 30%, 50% 30%, 75% 0, 100% 65%, 90% 100%, 10% 100%);
+}
+
+.cat-drawing::after {
+  content: "••";
+  position: absolute;
+  top: -3px;
+  left: 7px;
+  color: #405541;
+  font: 11px Arial, sans-serif;
+  letter-spacing: 6px;
+}
+
+@keyframes cat-bob {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(4deg);
+  }
 }
 
 @keyframes roll {
-  to { transform: translateX(-8px) rotate(180deg); }
+  to {
+    transform: translateX(-9px) rotate(180deg);
+  }
 }
 
-@media(max-width:700px) {
+footer {
+  padding: 30px 20px 65px;
+  text-align: center;
+  color: #748374;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+@media (max-width: 700px) {
   .hero {
     grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .portrait-frame {
+    width: min(430px, 100%);
+    margin: auto;
   }
 
   .letters {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .hero h2 {
-    font-size: 30px;
+  .hero-copy h2 {
+    font-size: 32px;
   }
 }
 
-@media(max-width:390px) {
+@media (max-width: 390px) {
   .letters {
     grid-template-columns: 1fr;
+  }
+
+  .letter-card {
+    min-height: 125px;
+  }
+
+  .modal-content {
+    padding: 36px 21px 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 </style>
@@ -385,47 +542,72 @@ footer {
 
 <body>
 
+<!-- PASSWORD SCREEN -->
+
 <div id="gate">
   <div class="gate-card">
     <div class="eyebrow">A little corner of calm</div>
+
     <h1>For Mei Mie</h1>
-    <p>A little collection of reminders for whenever you need them.</p>
+
+    <p>
+      A little collection of reminders,
+      for whenever you need them.
+    </p>
 
     <form id="loginForm">
       <input
         id="password"
         type="password"
-        placeholder="Enter your password"
-        aria-label="Password"
+        placeholder="Enter the password"
+        aria-label="Enter the password"
+        autocomplete="current-password"
       >
+
       <button class="primary" type="submit">
         Open your letters
       </button>
-      <p id="error"></p>
+
+      <p id="error" aria-live="polite"></p>
     </form>
   </div>
 </div>
+
+<!-- WEBSITE -->
 
 <div id="site">
 
 <header>
   <div class="eyebrow">A small reminder, just for you</div>
+
   <h1>Dear Roshaan</h1>
-  <div class="subtitle">Mei Mie, this little space is yours.</div>
+
+  <div class="subtitle">
+    Mei Mie, this little space is yours.
+  </div>
 </header>
 
 <main>
 
+<!-- THE ONLY PLACE WHERE THE PICTURE APPEARS -->
+
 <section class="hero">
-  <div>
+
+  <div class="hero-copy">
+
     <div class="eyebrow">Whenever you need a pause</div>
-    <h2>You deserve kindness, even on difficult days.</h2>
+
+    <h2>
+      You do not have to explain your feelings
+      to deserve kindness.
+    </h2>
 
     <p>
       I do not know what you might be going through,
       and you do not have to tell me before you are ready.
-      I just wanted to leave you a little place full of
-      reminders of the wonderful person you are.
+
+      I just wanted to leave you a quiet little place
+      full of reminders of the person you are.
     </p>
 
     <p>
@@ -436,171 +618,238 @@ footer {
     <button class="soft" onclick="openLetter('welcome')">
       Read a little note
     </button>
+
   </div>
 
-  <div class="art">
+  <div class="portrait-frame">
     <img
-      src="roshaan-sketch.png"
-      alt="Pencil drawing of Roshaan with a cat on her shoulder"
+      src="roshaan-sketch.heic"
+      alt="A pencil drawing of Roshaan with a cat on her shoulder"
     >
   </div>
-</section>
-
-<div class="section-title">
-  <div class="eyebrow">Tap to open</div>
-  <h2>Letters for Mei Mie</h2>
-  <p>Open any letter. Tap inside it to enlarge it.</p>
-</div>
-
-<section class="letters">
-
-<button class="letter-card" onclick="openLetter('amazing')">
-  <small>Letter 01</small>
-  <h3>The person you are</h3>
-  Open letter
-</button>
-
-<button class="letter-card" onclick="openLetter('style')">
-  <small>Letter 02</small>
-  <h3>Your own runway</h3>
-  Open letter
-</button>
-
-<button class="letter-card" onclick="openLetter('always')">
-  <small>Letter 03</small>
-  <h3>Stay Mei Mei</h3>
-  Open letter
-</button>
-
-<button class="letter-card" onclick="openLetter('diamond')">
-  <small>Letter 04</small>
-  <h3>Rare things shine</h3>
-  Open letter
-</button>
-
-<button class="letter-card" onclick="openLetter('perfect')">
-  <small>Letter 05</small>
-  <h3>Perfectly you</h3>
-  Open letter
-</button>
-
-<button class="letter-card" onclick="openLetter('rest')">
-  <small>Letter 06</small>
-  <h3>You can rest, too</h3>
-  Open letter
-</button>
-
-<button class="letter-card" onclick="openLetter('nature')">
-  <small>Letter 07</small>
-  <h3>A little nature break</h3>
-  Open letter
-</button>
-
-<button class="letter-card" onclick="openLetter('friend')">
-  <small>Letter 08</small>
-  <h3>You are not alone</h3>
-  Open letter
-</button>
-
-<button class="letter-card" onclick="openLetter('cat')">
-  <small>Letter 09</small>
-  <h3>Official cat advice</h3>
-  Open letter
-</button>
 
 </section>
+
+<!-- LETTER CARDS -->
+
+<section>
+
+  <div class="section-heading">
+    <div class="eyebrow">Tap to open</div>
+
+    <h2>Letters for Mei Mie</h2>
+
+    <p>
+      Choose any card. Tap inside an opened letter
+      to enlarge it.
+    </p>
+  </div>
+
+  <div class="letters">
+
+    <button class="letter-card" onclick="openLetter('amazing')">
+      <small>Letter 01</small>
+      <h3>The person you are</h3>
+      <span>Tap to open</span>
+    </button>
+
+    <button class="letter-card" onclick="openLetter('style')">
+      <small>Letter 02</small>
+      <h3>Your own runway</h3>
+      <span>Tap to open</span>
+    </button>
+
+    <button class="letter-card" onclick="openLetter('always')">
+      <small>Letter 03</small>
+      <h3>Stay Mei Mei</h3>
+      <span>Tap to open</span>
+    </button>
+
+    <button class="letter-card" onclick="openLetter('diamond')">
+      <small>Letter 04</small>
+      <h3>Rare things shine</h3>
+      <span>Tap to open</span>
+    </button>
+
+    <button class="letter-card" onclick="openLetter('perfect')">
+      <small>Letter 05</small>
+      <h3>Perfectly you</h3>
+      <span>Tap to open</span>
+    </button>
+
+    <button class="letter-card" onclick="openLetter('rest')">
+      <small>Letter 06</small>
+      <h3>You can rest, too</h3>
+      <span>Tap to open</span>
+    </button>
+
+    <button class="letter-card" onclick="openLetter('nature')">
+      <small>Letter 07</small>
+      <h3>A little nature break</h3>
+      <span>Tap to open</span>
+    </button>
+
+    <button class="letter-card" onclick="openLetter('friend')">
+      <small>Letter 08</small>
+      <h3>You are not alone</h3>
+      <span>Tap to open</span>
+    </button>
+
+    <button class="letter-card" onclick="openLetter('cat')">
+      <small>Letter 09</small>
+      <h3>Official cat advice</h3>
+      <span>Tap to open</span>
+    </button>
+
+  </div>
+</section>
+
+<!-- GENTLE REMINDER -->
 
 <section class="note">
+
+  <div class="eyebrow">Keep this close</div>
+
   <h2>A gentle reminder</h2>
 
   <p>
-    You are allowed to have difficult days without
-    turning them into a verdict on your life.
+    You are allowed to have difficult days
+    without turning them into a verdict on your life.
+
     You can be tired and still be strong.
+    You can be quiet and still matter.
     You can take a break and still move forward.
   </p>
 
   <button class="soft" onclick="openLetter('reminder')">
     Read this reminder
   </button>
+
 </section>
 
+<!-- QUESTION ONE -->
+
 <section class="question">
+
   <div class="eyebrow">One tiny question</div>
-  <h2>Mei Mie, will you be a little kinder to yourself today?</h2>
+
+  <h2>
+    Mei Mie, will you be a little kinder
+    to yourself today?
+  </h2>
 
   <p>
     You do not need to fix everything today.
     Just give yourself the patience you give others.
   </p>
 
-  <button class="primary" onclick="answerYes()">Yes</button>
-  <button class="soft" onclick="answerNo()">No</button>
+  <button class="primary" onclick="answerYes()">
+    Yes
+  </button>
+
+  <button class="soft" onclick="answerNo()">
+    No
+  </button>
+
 </section>
 
+<!-- QUESTION TWO -->
+
 <section class="question">
+
   <div class="eyebrow">Another tiny question</div>
-  <h2>Would a little break help right now?</h2>
+
+  <h2>
+    Would a little break help right now?
+  </h2>
 
   <p>
     Perhaps some fresh air, your favourite song,
     or a few minutes with a cat.
   </p>
 
-  <button class="primary" onclick="openLetter('break')">Yes</button>
-  <button class="soft" onclick="answerNo()">No</button>
+  <button class="primary" onclick="openLetter('break')">
+    Yes
+  </button>
+
+  <button class="soft" onclick="answerNo()">
+    No
+  </button>
+
 </section>
 
 </main>
 
 <footer>
-  Made with care for Roshaan — Mei Mie.<br>
+  Made with care for Roshaan — Mei Mie.
+  <br>
   There is no need to reply, explain, or pretend.
   Just be yourself.
 </footer>
 
 </div>
 
+<!-- DECORATIVE ANIMATED CAT AND THREAD -->
+
 <div class="cat-toy" aria-hidden="true">
-  <div class="ball"></div>
-  <div class="cat">♧</div>
+  <div class="thread-ball"></div>
+  <div class="thread-line"></div>
+  <div class="cat-drawing"></div>
 </div>
 
-<div class="modal" id="modal" onclick="outsideClose(event)">
+<!-- LETTER POP-UP -->
+
+<div
+  class="modal"
+  id="modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+  onclick="outsideClose(event)"
+>
+
   <div
     class="modal-content"
     id="modalContent"
     onclick="enlargeLetter()"
   >
+
     <button
       class="close"
-      onclick="event.stopPropagation();closeLetter()"
-      aria-label="Close"
+      aria-label="Close letter"
+      onclick="event.stopPropagation(); closeLetter()"
     >×</button>
 
     <div class="eyebrow">A letter for Mei Mie</div>
+
     <h2 id="modalTitle"></h2>
+
     <p id="modalText"></p>
 
-    <img
-      id="modalImage"
-      src="roshaan-sketch.heic"
-      alt="Roshaan's pencil drawing"
-      hidden
+    <!-- NO PICTURE IN LETTER POP-UPS -->
+
+    <div
+      class="modal-actions"
+      onclick="event.stopPropagation()"
     >
 
-    <div style="text-align:center">
       <button class="primary" onclick="enlargeLetter()">
         Enlarge letter
       </button>
+
       <button class="soft" onclick="closeLetter()">
-        Close
+        Close for now
       </button>
+
     </div>
+
   </div>
 </div>
 
 <script>
+
+/* ALL LETTERS */
+
 const letters = {
 
 welcome: {
@@ -610,22 +859,23 @@ welcome: {
 I am not sure what you might be going through,
 and I will not assume.
 
-This is a little reminder that you matter on
-the easy days and the difficult ones.
+This is just a little reminder that you matter
+on the easy days and the difficult ones.
 
-You do not have to explain everything or pretend
-that nothing is wrong.
+You do not have to explain everything,
+find the perfect words, or act like nothing
+is wrong.
 
-Take what you need from these letters.
-Leave the rest for another day.`
+Take what you need from these letters
+and leave the rest for another day.`
 },
 
 amazing: {
   title: "You are genuinely amazing",
   text: `Mei Mie, you are such an amazing person.
 
-There is so much more to you than your
-achievements or what other people notice.
+There is so much more to you than the things
+you achieve or the things other people notice.
 
 Your personality, your heart, your humour,
 your way of thinking, and the little things
@@ -635,8 +885,10 @@ Please never measure your worth by one bad day,
 one difficult conversation, or somebody else's
 inability to understand you.
 
-You are amazing even on the days when
-you do not feel amazing yourself.`
+You are amazing even when you do not feel
+like you are.
+
+I hope you never forget that.`
 },
 
 style: {
@@ -647,10 +899,10 @@ and your looks for a second?
 Because honestly, they are SO DAMN GOOD.
 
 You have the kind of style that could make
-a simple outfit look like an editorial shoot.
+a simple outfit look like a whole editorial shoot.
 
 Part-time modelling? Please.
-You could do it.
+You could absolutely do it.
 
 And I am STILL waiting for our clothes-hunting
 day, hahaha.
@@ -660,8 +912,9 @@ amounts of shopping, and very serious
 fashion opinions.
 
 But remember, you do not have to look perfect
-to be beautiful. Your style is special because
-it is yours.`
+to be beautiful.
+
+Your style is special because it is yours.`
 },
 
 always: {
@@ -680,7 +933,10 @@ learn from mistakes, and set boundaries.
 Growing does not mean becoming someone else.
 
 Please continue being the Mei Mei we know,
-while becoming the person YOU want to be.`
+while becoming the person YOU want to be.
+
+You never need to become somebody else
+to deserve friendship and happiness.`
 },
 
 diamond: {
@@ -695,7 +951,7 @@ Not everyone knows how to recognise a diamond.
 And you, Mei Mie, are a ridiculously rare one.
 One in 10,000,000,000,000,000,000.
 
-You do not have to be perfect.
+That does not mean you have to be perfect.
 You are allowed to make mistakes, too.
 
 Your worth does not disappear because
@@ -703,6 +959,7 @@ someone failed to see it.
 
 Learn when you need to learn.
 Protect your peace when you need to.
+
 Never let one person's opinion become
 your entire reflection.`
 },
@@ -726,8 +983,9 @@ but because you are a whole person beyond
 the things you sometimes criticise.
 
 Please speak to yourself with a little
-more gentleness.`,
-  image: true
+more gentleness.
+
+You deserve that, too.`
 },
 
 rest: {
@@ -744,6 +1002,8 @@ without being productive.
 A pause is not failure.
 A slow day is not a wasted day.
 
+You are a human being, not a machine.
+
 Give yourself permission to breathe
 and begin again when you are ready.`
 },
@@ -754,6 +1014,8 @@ nature: {
 
 A soft breeze moves through the trees.
 Sunlight falls gently through the leaves.
+The world feels quiet for a little while.
+
 There are no deadlines and no expectations.
 
 Just you, the sound of nature,
@@ -777,7 +1039,7 @@ you do not have to tell me before
 you are ready.
 
 You can talk, send one sentence,
-change the subject, or say nothing.
+change the subject, or say nothing at all.
 
 I will not force you to explain.
 
@@ -785,7 +1047,11 @@ You deserve support not only when you are
 cheerful, but also when you are quiet,
 confused, frustrated, or having a rough time.
 
-You matter in every version of yourself.`
+You matter in every version of yourself.
+
+And if you ever need someone to listen,
+you do not have to find the perfect words
+before reaching out.`
 },
 
 cat: {
@@ -793,11 +1059,13 @@ cat: {
   text: `The imaginary cat committee has
 an important announcement.
 
-Drink some water.
-Unclench your shoulders.
-Take a breath.
+First, drink some water.
 
-Remember that cats spend half their day resting.
+Second, relax your shoulders.
+
+Third, take a breath.
+
+Remember that cats spend plenty of time resting.
 You are not required to be productive
 every second.
 
@@ -805,7 +1073,9 @@ If today is difficult, consider a soft blanket,
 a snack, and looking at a cat doing
 absolutely nothing.
 
-The committee strongly recommends it.`
+The committee strongly recommends it.
+
+Meeting adjourned.`
 },
 
 reminder: {
@@ -823,7 +1093,10 @@ You are allowed to ask for help.
 You are allowed to begin again.
 
 You are worth showing up for,
-especially by yourself.`
+especially by yourself.
+
+One difficult day does not erase
+all the good things that make you YOU.`
 },
 
 break: {
@@ -839,8 +1112,11 @@ Take a few minutes away from your phone.
 There is no pressure to feel instantly better.
 
 Sometimes the goal is not to fix the whole day.
+
 Sometimes it is just to make the next five
-minutes a little gentler.`
+minutes a little gentler.
+
+Start small, Mei Mie. That is enough.`
 },
 
 no: {
@@ -866,13 +1142,19 @@ It does not have to be a huge change.
 One small moment of patience with yourself
 counts, too.
 
-You deserve that kindness.`
+You deserve that kindness,
+even on the difficult days.`
 }
 
 };
 
+/* OPEN A LETTER */
+
 function openLetter(key) {
+
   const letter = letters[key];
+
+  if (!letter) return;
 
   document.getElementById("modalTitle").textContent =
     letter.title;
@@ -880,92 +1162,147 @@ function openLetter(key) {
   document.getElementById("modalText").textContent =
     letter.text;
 
-  document.getElementById("modalImage").hidden =
-    !letter.image;
-
   document.getElementById("modalContent")
     .classList.remove("enlarged");
 
   document.getElementById("modal").classList.add("open");
+
   document.body.style.overflow = "hidden";
 }
 
+/* ENLARGE THE LETTER */
+
 function enlargeLetter() {
+
   document.getElementById("modalContent")
     .classList.toggle("enlarged");
+
 }
+
+/* CLOSE THE LETTER */
 
 function closeLetter() {
-  document.getElementById("modal").classList.remove("open");
+
+  document.getElementById("modal")
+    .classList.remove("open");
+
   document.body.style.overflow = "";
+
 }
 
+/* CLOSE WHEN TAPPING OUTSIDE */
+
 function outsideClose(event) {
+
   if (event.target.id === "modal") {
     closeLetter();
   }
+
 }
 
+/* YES AND NO QUESTIONS */
+
 function answerYes() {
+
   openLetter("yes");
+
 }
 
 function answerNo() {
+
   openLetter("no");
 
-  const buttons = document.querySelector(
-    "#modalContent div[style]"
-  );
+  const actions = document.querySelector(".modal-actions");
 
-  buttons.innerHTML = `
-    <button class="primary"
-      onclick="openLetter('yes')">Yes</button>
+  actions.innerHTML = `
+    <button class="primary" onclick="openLetter('yes')">
+      Yes
+    </button>
 
-    <button class="soft"
-      onclick="openLetter('yes')">Yess</button>
+    <button class="soft" onclick="openLetter('yes')">
+      Yess
+    </button>
 
-    <button class="soft"
-      onclick="closeLetter()">Maybe later</button>
+    <button class="soft" onclick="closeLetter()">
+      Maybe later
+    </button>
   `;
+
 }
+
+/* PASSWORD */
 
 document.getElementById("loginForm")
 .addEventListener("submit", function(event) {
+
   event.preventDefault();
 
-  if (document.getElementById("password").value === "PassworD") {
+  const enteredPassword =
+    document.getElementById("password").value;
+
+  if (enteredPassword === "PassworD") {
+
     document.getElementById("gate").style.display = "none";
+
     document.getElementById("site").style.display = "block";
+
     startSparkles();
+
   } else {
+
     document.getElementById("error").textContent =
       "That password does not look right. Try again.";
+
   }
+
 });
 
+/* FALLING SPARKLES */
+
 function startSparkles() {
+
   setInterval(function() {
+
     const sparkle = document.createElement("span");
 
     sparkle.className = "sparkle";
-    sparkle.textContent = Math.random() > 0.5 ? "✧" : "✦";
+
+    sparkle.textContent =
+      Math.random() > 0.5 ? "✧" : "✦";
+
     sparkle.style.left = Math.random() * 100 + "vw";
-    sparkle.style.fontSize = (10 + Math.random() * 12) + "px";
-    sparkle.style.animationDuration = (6 + Math.random() * 7) + "s";
+
+    sparkle.style.fontSize =
+      (10 + Math.random() * 12) + "px";
+
+    sparkle.style.setProperty(
+      "--drift",
+      (Math.random() * 100 - 50) + "px"
+    );
+
+    sparkle.style.animationDuration =
+      (6 + Math.random() * 7) + "s";
 
     document.body.appendChild(sparkle);
 
     setTimeout(function() {
       sparkle.remove();
     }, 14000);
+
   }, 450);
+
 }
 
+/* ESCAPE KEY CLOSES THE POP-UP */
+
 document.addEventListener("keydown", function(event) {
+
   if (event.key === "Escape") {
     closeLetter();
   }
+
 });
+
 </script>
 
 </body>
