@@ -1,1 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Roshaan | Mei Mie</title>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  color: #354b39;
+  background: linear-gradient(135deg, #edf3e8, #fbf5f0, #e5eee1);
+  min-height: 100vh;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+#gate {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #e4eddf, #faf0eb);
+}
+
+.gate-card {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  padding: 35px 25px;
+  background: #fffdf8;
+  border: 1px solid #ccd9c7;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px #40534018;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 42px;
+}
+
+.gate-card p {
+  line-height: 1.8;
+  color: #687a69;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin: 20px 0;
+  border: 1px solid #cbd8c6;
+  border-radius: 12px;
+  background: white;
+}
+
+.primary, .soft {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 30px;
+  margin: 4px;
+}
+
+.primary {
+  color: white;
+  background: #526f55;
+}
+
+.soft {
+  color: #405a43;
+  background: #e5eee1;
+}
+
+#site {
+  display: none;
+}
+
+header {
+  text-align: center;
+  padding: 35px 15px 15px;
+}
+
+.eyebrow {
+  font: 11px Arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #7b9277;
+}
+
+header h1 {
+  font-size: clamp(42px, 9vw, 68px);
+  margin: 18px 0 8px;
+}
+
+.subtitle {
+  font-style: italic;
+  color: #718071;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+  margin: 30px 0 50px;
+}
+
+.hero h2 {
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.hero p {
+  line-height: 1.9;
+  color: #617362;
+}
+
+.art {
+  padding: 12px;
+  background: #fffdf8;
+  border: 1px solid #d4dfd0;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px #40534018;
+  transform: rotate(1deg);
+}
+
+.art img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.section-title {
+  text-align: center;
+  margin: 45px 0 25px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.section-title p {
+  line-height: 1.7;
+  color: #718071;
+}
+
+.letters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.letter-card {
+  text-align: left;
+  min-height: 145px;
+  padding: 20px;
+  border: 1px solid #d3dfcf;
+  border-radius: 18px;
+  background: #fffdf8;
+  color: #354b39;
+  transition: transform .2s;
+}
+
+.letter-card:hover {
+  transform: translateY(-4px);
+}
+
+.letter-card small {
+  color: #82957e;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.letter-card h3 {
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.note, .question {
+  margin: 30px auto;
+  padding: 28px;
+  max-width: 720px;
+  text-align: center;
+  background: #fffdf8;
+  border: 1px solid #d4dfd0;
+  border-radius: 22px;
+}
+
+.note p, .question p {
+  color: #657565;
+  line-height: 1.9;
+}
+
+.question h2 {
+  font-size: 26px;
+  font-weight: normal;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 20px 65px;
+  color: #718071;
+  line-height: 1.8;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  padding: 18px;
+  background: #233329aa;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 35px 28px;
+  border: 1px solid #d4dfd0;
+  border-radius: 24px;
+  background: #fffdf7;
+  animation: pop .3s ease;
+}
+
+.modal-content.enlarged {
+  max-width: 850px;
+  padding: 45px 30px;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: #e8efe4;
+  color: #354b39;
+  font-size: 22px;
+}
+
+.modal-content h2 {
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 1.2;
+  margin-top: 20px;
+}
+
+.modal-content p {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #586b59;
+  white-space: pre-line;
+}
+
+.modal-content img {
+  display: block;
+  width: 100%;
+  max-width: 330px;
+  margin: 20px auto;
+  border-radius: 12px;
+}
+
+.sparkle {
+  position: fixed;
+  top: -25px;
+  z-index: 5;
+  color: #91ad89;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(240deg);
+    opacity: 0;
+  }
+}
+
+.cat-toy {
+  position: fixed;
+  bottom: 10px;
+  right: 12px;
+  z-index: 6;
+  width: 100px;
+  height: 65px;
+}
+
+.cat {
+  position: absolute;
+  right: 5px;
+  bottom: 12px;
+  font-size: 35px;
+  animation: bob 1.5s infinite ease-in-out;
+}
+
+.ball {
+  position: absolute;
+  left: 5px;
+  bottom: 10px;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #829a7d;
+  border-radius: 50%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 4px,
+    #b5c6ae 5px 6px
+  );
+  animation: roll 1.5s infinite alternate;
+}
+
+@keyframes bob {
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes roll {
+  to { transform: translateX(-8px) rotate(180deg); }
+}
+
+@media(max-width:700px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .letters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h2 {
+    font-size: 30px;
+  }
+}
+
+@media(max-width:390px) {
+  .letters {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="gate">
+  <div class="gate-card">
+    <div class="eyebrow">A little corner of calm</div>
+    <h1>For Mei Mie</h1>
+    <p>A little collection of reminders for whenever you need them.</p>
+
+    <form id="loginForm">
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter your password"
+        aria-label="Password"
+      >
+      <button class="primary" type="submit">
+        Open your letters
+      </button>
+      <p id="error"></p>
+    </form>
+  </div>
+</div>
+
+<div id="site">
+
+<header>
+  <div class="eyebrow">A small reminder, just for you</div>
+  <h1>Dear Roshaan</h1>
+  <div class="subtitle">Mei Mie, this little space is yours.</div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">Whenever you need a pause</div>
+    <h2>You deserve kindness, even on difficult days.</h2>
+
+    <p>
+      I do not know what you might be going through,
+      and you do not have to tell me before you are ready.
+      I just wanted to leave you a little place full of
+      reminders of the wonderful person you are.
+    </p>
+
+    <p>
+      Take your time. Open a letter. Stay for a moment.
+      There is no pressure to be okay all the time.
+    </p>
+
+    <button class="soft" onclick="openLetter('welcome')">
+      Read a little note
+    </button>
+  </div>
+
+  <div class="art">
+    <img
+      src="roshaan-sketch.png"
+      alt="Pencil drawing of Roshaan with a cat on her shoulder"
+    >
+  </div>
+</section>
+
+<div class="section-title">
+  <div class="eyebrow">Tap to open</div>
+  <h2>Letters for Mei Mie</h2>
+  <p>Open any letter. Tap inside it to enlarge it.</p>
+</div>
+
+<section class="letters">
+
+<button class="letter-card" onclick="openLetter('amazing')">
+  <small>Letter 01</small>
+  <h3>The person you are</h3>
+  Open letter
+</button>
+
+<button class="letter-card" onclick="openLetter('style')">
+  <small>Letter 02</small>
+  <h3>Your own runway</h3>
+  Open letter
+</button>
+
+<button class="letter-card" onclick="openLetter('always')">
+  <small>Letter 03</small>
+  <h3>Stay Mei Mei</h3>
+  Open letter
+</button>
+
+<button class="letter-card" onclick="openLetter('diamond')">
+  <small>Letter 04</small>
+  <h3>Rare things shine</h3>
+  Open letter
+</button>
+
+<button class="letter-card" onclick="openLetter('perfect')">
+  <small>Letter 05</small>
+  <h3>Perfectly you</h3>
+  Open letter
+</button>
+
+<button class="letter-card" onclick="openLetter('rest')">
+  <small>Letter 06</small>
+  <h3>You can rest, too</h3>
+  Open letter
+</button>
+
+<button class="letter-card" onclick="openLetter('nature')">
+  <small>Letter 07</small>
+  <h3>A little nature break</h3>
+  Open letter
+</button>
+
+<button class="letter-card" onclick="openLetter('friend')">
+  <small>Letter 08</small>
+  <h3>You are not alone</h3>
+  Open letter
+</button>
+
+<button class="letter-card" onclick="openLetter('cat')">
+  <small>Letter 09</small>
+  <h3>Official cat advice</h3>
+  Open letter
+</button>
+
+</section>
+
+<section class="note">
+  <h2>A gentle reminder</h2>
+
+  <p>
+    You are allowed to have difficult days without
+    turning them into a verdict on your life.
+    You can be tired and still be strong.
+    You can take a break and still move forward.
+  </p>
+
+  <button class="soft" onclick="openLetter('reminder')">
+    Read this reminder
+  </button>
+</section>
+
+<section class="question">
+  <div class="eyebrow">One tiny question</div>
+  <h2>Mei Mie, will you be a little kinder to yourself today?</h2>
+
+  <p>
+    You do not need to fix everything today.
+    Just give yourself the patience you give others.
+  </p>
+
+  <button class="primary" onclick="answerYes()">Yes</button>
+  <button class="soft" onclick="answerNo()">No</button>
+</section>
+
+<section class="question">
+  <div class="eyebrow">Another tiny question</div>
+  <h2>Would a little break help right now?</h2>
+
+  <p>
+    Perhaps some fresh air, your favourite song,
+    or a few minutes with a cat.
+  </p>
+
+  <button class="primary" onclick="openLetter('break')">Yes</button>
+  <button class="soft" onclick="answerNo()">No</button>
+</section>
+
+</main>
+
+<footer>
+  Made with care for Roshaan — Mei Mie.<br>
+  There is no need to reply, explain, or pretend.
+  Just be yourself.
+</footer>
+
+</div>
+
+<div class="cat-toy" aria-hidden="true">
+  <div class="ball"></div>
+  <div class="cat">♧</div>
+</div>
+
+<div class="modal" id="modal" onclick="outsideClose(event)">
+  <div
+    class="modal-content"
+    id="modalContent"
+    onclick="enlargeLetter()"
+  >
+    <button
+      class="close"
+      onclick="event.stopPropagation();closeLetter()"
+      aria-label="Close"
+    >×</button>
+
+    <div class="eyebrow">A letter for Mei Mie</div>
+    <h2 id="modalTitle"></h2>
+    <p id="modalText"></p>
+
+    <img
+      id="modalImage"
+      src="roshaan-sketch.png"
+      alt="Roshaan's pencil drawing"
+      hidden
+    >
+
+    <div style="text-align:center">
+      <button class="primary" onclick="enlargeLetter()">
+        Enlarge letter
+      </button>
+      <button class="soft" onclick="closeLetter()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const letters = {
+
+welcome: {
+  title: "A little place to breathe",
+  text: `Hi Mei Mie.
+
+I am not sure what you might be going through,
+and I will not assume.
+
+This is a little reminder that you matter on
+the easy days and the difficult ones.
+
+You do not have to explain everything or pretend
+that nothing is wrong.
+
+Take what you need from these letters.
+Leave the rest for another day.`
+},
+
+amazing: {
+  title: "You are genuinely amazing",
+  text: `Mei Mie, you are such an amazing person.
+
+There is so much more to you than your
+achievements or what other people notice.
+
+Your personality, your heart, your humour,
+your way of thinking, and the little things
+that make you YOU are worth appreciating.
+
+Please never measure your worth by one bad day,
+one difficult conversation, or somebody else's
+inability to understand you.
+
+You are amazing even on the days when
+you do not feel amazing yourself.`
+},
+
+style: {
+  title: "The fashion icon has entered",
+  text: `Can we talk about your fashion sense
+and your looks for a second?
+
+Because honestly, they are SO DAMN GOOD.
+
+You have the kind of style that could make
+a simple outfit look like an editorial shoot.
+
+Part-time modelling? Please.
+You could do it.
+
+And I am STILL waiting for our clothes-hunting
+day, hahaha.
+
+I expect excellent outfits, questionable
+amounts of shopping, and very serious
+fashion opinions.
+
+But remember, you do not have to look perfect
+to be beautiful. Your style is special because
+it is yours.`
+},
+
+always: {
+  title: "Please stay our Mei Mei",
+  text: `No matter what changes around you,
+please do not lose the parts of yourself
+that make you Mei Mei.
+
+Keep your personality, your humour,
+your dreams, your opinions, and the things
+that make you happy.
+
+You are allowed to grow, change your mind,
+learn from mistakes, and set boundaries.
+
+Growing does not mean becoming someone else.
+
+Please continue being the Mei Mei we know,
+while becoming the person YOU want to be.`
+},
+
+diamond: {
+  title: "Not everyone recognises a diamond",
+  text: `If people have argued with you, hurt you,
+misunderstood you, or made you angry,
+please do not let that convince you
+that there is something wrong with you.
+
+Not everyone knows how to recognise a diamond.
+
+And you, Mei Mie, are a ridiculously rare one.
+One in 10,000,000,000,000,000,000.
+
+You do not have to be perfect.
+You are allowed to make mistakes, too.
+
+Your worth does not disappear because
+someone failed to see it.
+
+Learn when you need to learn.
+Protect your peace when you need to.
+Never let one person's opinion become
+your entire reflection.`
+},
+
+perfect: {
+  title: "Perfectly perfect in your own way",
+  text: `You do not need to become a different person
+to deserve good things.
+
+You are allowed to have flaws, awkward moments,
+tired days, messy feelings, and things
+you are still learning.
+
+None of those things cancel out the lovely
+things about you.
+
+You are perfectly YOU.
+
+Not because you never struggle,
+but because you are a whole person beyond
+the things you sometimes criticise.
+
+Please speak to yourself with a little
+more gentleness.`,
+  image: true
+},
+
+rest: {
+  title: "You are allowed to rest",
+  text: `You do not have to earn rest by reaching
+exhaustion first.
+
+You do not have to solve every problem tonight.
+
+It is okay to reply later, take a nap,
+cry if you need to, or simply exist
+without being productive.
+
+A pause is not failure.
+A slow day is not a wasted day.
+
+Give yourself permission to breathe
+and begin again when you are ready.`
+},
+
+nature: {
+  title: "Imagine a quiet little place",
+  text: `Imagine sitting somewhere green.
+
+A soft breeze moves through the trees.
+Sunlight falls gently through the leaves.
+There are no deadlines and no expectations.
+
+Just you, the sound of nature,
+and a little peace.
+
+If you can, give yourself a tiny version
+of that today.
+
+Step outside for a few minutes,
+look at the sky, water a plant,
+or find a quiet corner.
+
+You deserve moments that ask nothing
+from you.`
+},
+
+friend: {
+  title: "You do not have to carry everything alone",
+  text: `If something is weighing on you,
+you do not have to tell me before
+you are ready.
+
+You can talk, send one sentence,
+change the subject, or say nothing.
+
+I will not force you to explain.
+
+You deserve support not only when you are
+cheerful, but also when you are quiet,
+confused, frustrated, or having a rough time.
+
+You matter in every version of yourself.`
+},
+
+cat: {
+  title: "Official cat advice",
+  text: `The imaginary cat committee has
+an important announcement.
+
+Drink some water.
+Unclench your shoulders.
+Take a breath.
+
+Remember that cats spend half their day resting.
+You are not required to be productive
+every second.
+
+If today is difficult, consider a soft blanket,
+a snack, and looking at a cat doing
+absolutely nothing.
+
+The committee strongly recommends it.`
+},
+
+reminder: {
+  title: "Save this for a harder day",
+  text: `This feeling is real, but it is not
+the whole story.
+
+You do not need to figure out your entire
+future right now.
+
+Do the next small, kind thing for yourself.
+Then the next.
+
+You are allowed to ask for help.
+You are allowed to begin again.
+
+You are worth showing up for,
+especially by yourself.`
+},
+
+break: {
+  title: "A tiny reset",
+  text: `Choose one small thing.
+
+Step outside.
+Stretch your shoulders.
+Put on a song you love.
+Drink some water.
+Take a few minutes away from your phone.
+
+There is no pressure to feel instantly better.
+
+Sometimes the goal is not to fix the whole day.
+Sometimes it is just to make the next five
+minutes a little gentler.`
+},
+
+no: {
+  title: "No is completely acceptable",
+  text: `That is completely okay, Mei Mie.
+
+You do not have to say yes just because
+someone suggests it.
+
+Your feelings and your choices matter.
+
+Would you like to choose again,
+with absolutely no pressure?`
+},
+
+yes: {
+  title: "That is a lovely promise",
+  text: `Thank you for giving yourself
+a little kindness.
+
+It does not have to be a huge change.
+
+One small moment of patience with yourself
+counts, too.
+
+You deserve that kindness.`
+}
+
+};
+
+function openLetter(key) {
+  const letter = letters[key];
+
+  document.getElementById("modalTitle").textContent =
+    letter.title;
+
+  document.getElementById("modalText").textContent =
+    letter.text;
+
+  document.getElementById("modalImage").hidden =
+    !letter.image;
+
+  document.getElementById("modalContent")
+    .classList.remove("enlarged");
+
+  document.getElementById("modal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function enlargeLetter() {
+  document.getElementById("modalContent")
+    .classList.toggle("enlarged");
+}
+
+function closeLetter() {
+  document.getElementById("modal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function outsideClose(event) {
+  if (event.target.id === "modal") {
+    closeLetter();
+  }
+}
+
+function answerYes() {
+  openLetter("yes");
+}
+
+function answerNo() {
+  openLetter("no");
+
+  const buttons = document.querySelector(
+    "#modalContent div[style]"
+  );
+
+  buttons.innerHTML = `
+    <button class="primary"
+      onclick="openLetter('yes')">Yes</button>
+
+    <button class="soft"
+      onclick="openLetter('yes')">Yess</button>
+
+    <button class="soft"
+      onclick="closeLetter()">Maybe later</button>
+  `;
+}
+
+document.getElementById("loginForm")
+.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (document.getElementById("password").value === "PassworD") {
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("site").style.display = "block";
+    startSparkles();
+  } else {
+    document.getElementById("error").textContent =
+      "That password does not look right. Try again.";
+  }
+});
+
+function startSparkles() {
+  setInterval(function() {
+    const sparkle = document.createElement("span");
+
+    sparkle.className = "sparkle";
+    sparkle.textContent = Math.random() > 0.5 ? "✧" : "✦";
+    sparkle.style.left = Math.random() * 100 + "vw";
+    sparkle.style.fontSize = (10 + Math.random() * 12) + "px";
+    sparkle.style.animationDuration = (6 + Math.random() * 7) + "s";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(function() {
+      sparkle.remove();
+    }, 14000);
+  }, 450);
+}
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    closeLetter();
+  }
+});
+</script>
+
+</body>
+</html>
